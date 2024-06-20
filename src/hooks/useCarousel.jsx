@@ -31,6 +31,7 @@ const useCarousel = (carouselRef) => {
   const prevSlide = () => {
     if (carouselRef.current) {
       const width = carouselRef.current.clientWidth;
+      console.log(`left ${width}`);
       carouselRef.current.scrollLeft -= width - 600;
     }
   };
