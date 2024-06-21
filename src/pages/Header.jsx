@@ -1,9 +1,12 @@
 import { useState } from 'react';
 import { SiSwiggy } from 'react-icons/si';
 import { Link } from 'react-router-dom';
+import useOnlineStatus from '../hooks/useOnlineStatus';
 
 const Header = () => {
   const [toggle, setToggle] = useState(true);
+  const onlineStatus = useOnlineStatus();
+
   return (
     <div className='flex fixed z-10 w-full justify-between py-4 boxShadow bg-white'>
       <Link to={'/'} className='flex justify-center items-center mx-32'>
@@ -13,6 +16,7 @@ const Header = () => {
         />
       </Link>
       <div className='flex items-center gap-12 mx-32'>
+        <p>{onlineStatus ? '🟢 Online ' : '🔴 Offline'}</p>
         <p>Offers</p>
         <Link to={'/about'}>About</Link>
         <Link to={'/contact'}>Contact</Link>

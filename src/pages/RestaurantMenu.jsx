@@ -1,8 +1,9 @@
 import { GoSearch } from 'react-icons/go';
-import { MenuCardShimmer2 } from '../components/MenuCardShimmer';
+
 import useRestaurants from '../hooks/useRestaurants';
 import RestaurantMenuCard from '../components/RestaurantMenuCard';
 import { Link } from 'react-router-dom';
+import MenuCardShimmer2 from '../components/MenuCardShimmer2';
 
 const RestaurantMenu = () => {
   const {

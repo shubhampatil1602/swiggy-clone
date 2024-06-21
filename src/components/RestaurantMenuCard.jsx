@@ -1,7 +1,7 @@
 import { MdStars } from 'react-icons/md';
 import { CLOUDINARY_CDN_URL } from '../utils/constants';
 
-export default function RestaurantMenuCard({ r, sty }) {
+const RestaurantMenuCard = ({ r, sty }) => {
   return (
     <div className='cursor-pointer h-[264px] w-[244px] relative flex-shrink-0 hover:scale-95 transition-transform duration-300 ease-in-out'>
       <div className='w-full'>
@@ -53,4 +53,6 @@ export default function RestaurantMenuCard({ r, sty }) {
       </div>
     </div>
   );
-}
+};
+
+export default RestaurantMenuCard;

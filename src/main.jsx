@@ -1,13 +1,17 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App.jsx';
 import './index.css';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import About from './pages/About.jsx';
 import Contact from './pages/Contact.jsx';
 import Error from './pages/Error.jsx';
 import Home from './pages/Home.jsx';
-import RestaurantMenuDetails from './pages/RestaurantMenuDetails.jsx';
+
+const RestaurantMenuDetails = lazy(() =>
+  import('./pages/RestaurantMenuDetails.jsx')
+);
+
+const About = lazy(() => import('./pages/About.jsx'));
 
 const appRouter = createBrowserRouter([
   {
@@ -20,7 +24,11 @@ const appRouter = createBrowserRouter([
       },
       {
         path: '/about',
-        element: <About />,
+        element: (
+          <Suspense fallback={<div>Loading...</div>}>
+            <About />
+          </Suspense>
+        ),
       },
       {
         path: '/contact',
@@ -28,7 +36,11 @@ const appRouter = createBrowserRouter([
       },
       {
         path: '/restaurants/:resId',
-        element: <RestaurantMenuDetails />,
+        element: (
+          <Suspense fallback={<div>Loading...</div>}>
+            <RestaurantMenuDetails />
+          </Suspense>
+        ),
       },
     ],
     errorElement: <Error />,

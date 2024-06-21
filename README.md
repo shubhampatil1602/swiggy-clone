@@ -1,3 +1,30 @@
+## Best Practices - Code Efficiency
+
+### Lazy loading - to reduce the code bundle size, to build large scale performant application.
+
+- Chunking
+- Code Splitting
+- Dynamic Bundling
+- Dynamic Import
+- On Demand Loading
+
+```javascript
+const ComponentName = lazy(() => import('./pathOfComponent'));
+```
+
+- It is important to wrap lazy loaded component inside `Suspense` else render of that component will be suspended and throw error, bcz react tries to render that component quickly but it takes some time to fetch the data.
+
+```javascript
+{
+  path: '/route/:id',
+    element: (
+      <Suspense fallback={<Loading />}>
+        <ComponentName />
+      </Suspense>
+    ),
+},
+```
+
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.

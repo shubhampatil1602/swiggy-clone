@@ -1,6 +1,6 @@
 import { WHAT_IS_IN_YOUR_MIND } from '../utils/constants';
 
-export default function WhatIsOnYourMind({ image }) {
+const WhatIsOnYourMind = ({ image }) => {
   return (
     <div className='flex-shrink-0 cursor-pointer'>
       <img
@@ -10,4 +10,6 @@ export default function WhatIsOnYourMind({ image }) {
       />
     </div>
   );
-}
+};
+
+export default WhatIsOnYourMind;

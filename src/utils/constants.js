@@ -14,5 +14,9 @@ export const CLOUDINARY_CDN_URL =
 
 export const ERROR_MEME = 'https://i.imgflip.com/8uc6ey.jpg';
 
+export const MEME_2 = 'https://i.imgflip.com/8uk2nj.jpg';
+
+export const OFFLINE_MEME = 'https://i.imgflip.com/8ukfnw.jpg';
+
 export const BHAU =
   'https://i.pinimg.com/474x/a7/8b/69/a78b698e74de6e76c1280572fa47e48c.jpg';

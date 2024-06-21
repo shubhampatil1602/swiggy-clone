@@ -1,7 +1,7 @@
 import { MdStars } from 'react-icons/md';
 import { CLOUDINARY_CDN_URL } from '../utils/constants';
 
-export default function TopRestaurant({ r, sty }) {
+const TopRestaurant = ({ r, sty }) => {
   return (
     <div className='cursor-pointer w-[283.3px] relative flex-shrink-0 hover:scale-95 transition-transform duration-300 ease-in-out'>
       <div className='w-full'>
@@ -53,4 +53,6 @@ export default function TopRestaurant({ r, sty }) {
       </div>
     </div>
   );
-}
+};
+
+export default TopRestaurant;

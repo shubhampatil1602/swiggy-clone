@@ -1,6 +1,6 @@
 import { BHAU } from '../utils/constants';
 
-export default function TopShimmer() {
+const TopShimmer = () => {
   return (
     <div className='w-full flex flex-col justify-center items-center gap-6 h-[320px] mx-auto relative z-0 top-20 mb-3 bg-[#171A29]'>
       <div className='flex justify-center items-center relative'>
@@ -20,4 +20,6 @@ export default function TopShimmer() {
       </div>
     </div>
   );
-}
+};
+
+export default TopShimmer;
