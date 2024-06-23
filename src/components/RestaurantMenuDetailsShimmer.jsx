@@ -1,23 +1,13 @@
 const RestaurantMenuDetailsShimmer = () => {
   return (
     <div className='p-4 mt-4 border-b border-slate-200 pb-6 w-screen max-w-screen-md cursor-pointer'>
-      <div className='flex'>
-        <div className='h-4 bg-gray-200 rounded-full w-48 mb-9'></div>
-        <div className='h-2 bg-gray-200 rounded-full mb-2.5'></div>
-        <div className='h-2 bg-gray-200 rounded-full mb-2.5'></div>
-        <div className='flex justify-center flex-col pl-2'></div>
-        <div className='pl-2 font-thin text-slate-500 text-sm flex justify-center flex-col'>
-          <div className='h-2 bg-gray-200 rounded-full mb-2.5'></div>
-        </div>
-      </div>
-      <div className='text-xl font-semibold pt-2'>
-        <div className='h-2 bg-gray-200 rounded-full mb-2.5'></div>
-      </div>
-      <div className='text-md font-thin'>
-        <div className='h-2 bg-gray-200 rounded-full mb-2.5'></div>
-      </div>
-      <div className='text-slate-500 text-sm font-thin pt-4'>
-        <div className='h-2 bg-gray-200 rounded-full mb-2.5'></div>
+      <div className='h-6 w-3/4 bg-blue-200 rounded-2xl mb-6 mt-3'></div>
+      <div className='h-56 bg-gray-200 rounded-2xl w-full mb-9'></div>
+      <div className='h-5 w-3/12 bg-gray-200 rounded-2xl mt-4 mb-6'></div>
+      <div className='flex gap-4 overflow-hidden w-full'>
+        <div className='h-20 w-full bg-gray-200 rounded-2xl mb-2.5'></div>
+        <div className='h-20 w-full bg-gray-200 rounded-2xl mb-2.5'></div>
+        <div className='h-20 w-full bg-gray-200 rounded-2xl mb-2.5'></div>
       </div>
     </div>
   );

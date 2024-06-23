@@ -18,6 +18,7 @@ const RestaurantMenuCard = ({ r, sty }) => {
         }}
       >
         <div className='bg-gradient-to-t from-black via-transparent to-transparent h-[180px] px-2 py-1 rounded-b-2xl flex items-end'>
+          {/* Offer */}
           <h1 className='font-extrabold text-lg px-2 py-1 text-white'>
             {r?.info?.aggregatedDiscountInfoV3 === undefined
               ? ''

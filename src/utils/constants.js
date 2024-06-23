@@ -12,6 +12,9 @@ export const WHAT_IS_IN_YOUR_MIND =
 export const CLOUDINARY_CDN_URL =
   'https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/';
 
+export const CLOUDINARY_OFFER_URL =
+  'https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_96,h_96/';
+
 export const ERROR_MEME = 'https://i.imgflip.com/8uc6ey.jpg';
 
 export const MEME_2 = 'https://i.imgflip.com/8uk2nj.jpg';

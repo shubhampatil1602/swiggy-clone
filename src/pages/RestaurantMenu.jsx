@@ -1,5 +1,4 @@
 import { GoSearch } from 'react-icons/go';
-
 import useRestaurants from '../hooks/useRestaurants';
 import RestaurantMenuCard from '../components/RestaurantMenuCard';
 import { Link } from 'react-router-dom';
