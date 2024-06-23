@@ -1,9 +1,12 @@
 import WhatIsOnYourMind from '../components/WhatIsOnYourMind';
 import TopShimmer from '../components/TopShimmer';
 import useRestaurants from '../hooks/useRestaurants';
+import { useContext } from 'react';
+import UserContext from '../contexts/UserContext';
 
 const WhatIsOnYourMindCarousel = () => {
   const { menuCard } = useRestaurants();
+  const { loggedInUser, setUserName } = useContext(UserContext);
 
   return menuCard.length === 0 ? (
     <TopShimmer />
@@ -12,6 +15,15 @@ const WhatIsOnYourMindCarousel = () => {
       <div className='flex justify-between p-4'>
         <h1 className='font-bold text-2xl'>What's on your mind? 🤔</h1>
         {/* Buttons */}
+        <div className=''>
+          <input
+            type='text'
+            className='border px-3 py-1 rounded-md'
+            placeholder='Enter username'
+            value={loggedInUser}
+            onChange={(e) => setUserName(e.target.value)}
+          />
+        </div>
       </div>
 
       <div className='overflow-x-auto hide-scrollbar container-carousel'>

@@ -25,6 +25,14 @@ const ComponentName = lazy(() => import('./pathOfComponent'));
 },
 ```
 
+### redux-toolkit uses immer.js behind the scenes.
+
+- The job of immer is to create deep clone of your state in such a way :
+
+```
+Original State + Copy of that State = Calculated diff between both and returns copy.
+```
+
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.

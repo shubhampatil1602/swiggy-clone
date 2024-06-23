@@ -7,14 +7,21 @@ import { MdStars } from 'react-icons/md';
 import ItemCategoryAccordian from '../components/ItemCategoryAccordian';
 import { useState } from 'react';
 import useMenuTypes from '../hooks/useMenuTypes';
+import MenuCarousel from '../components/MenuCarousel';
+import NestedItemCategory from '../components/NestedItemCategory';
 
 const RestaurantMenuDetails = () => {
   const { resId } = useParams();
   const { resInfo } = useRestaurantMenuDetails(resId);
   const [show, setShow] = useState(0);
 
-  const { offerInfoWithStyle, itemCategory, restaurantDetail } =
-    useMenuTypes(resInfo);
+  const {
+    offerInfoWithStyle,
+    menuCarousel,
+    itemCategory,
+    restaurantDetail,
+    nestedItemCategory,
+  } = useMenuTypes(resInfo);
 
   const toggleShow = (index) => {
     if (show === index) {
@@ -88,7 +95,7 @@ const RestaurantMenuDetails = () => {
       </div>
 
       {/* Deals for you */}
-      <h2 className='font-bold text-xl px-3 py-2 mt-6'>Deals for you</h2>
+      <h2 className='font-bold text-xl px-3 py-2 mt-6'>{'Deals for you'}</h2>
       <div className='overflow-x-auto hide-scrollbar container-carousel p-3'>
         <div className='flex gap-3 transition-transform duration-500'>
           {offerInfoWithStyle?.offers?.map((c) => (
@@ -104,6 +111,25 @@ const RestaurantMenuDetails = () => {
         </h2>
       </div>
 
+      {/* Top Picks */}
+      {menuCarousel?.length > 0 && (
+        <>
+          <h2 className='font-bold text-xl px-3 py-2 mt-6'>
+            {menuCarousel?.[0]?.card?.card?.title}
+          </h2>
+          <div className='overflow-x-auto hide-scrollbar container-carousel pt-3'>
+            <div className='flex gap-3 transition-transform duration-500 '>
+              {menuCarousel?.map((c) => (
+                <MenuCarousel
+                  key={c?.card?.card?.['@type']}
+                  c={c?.card?.card}
+                />
+              ))}
+            </div>
+          </div>
+        </>
+      )}
+      {/* Single Accordian */}
       <div>
         {itemCategory?.map((c, index) => (
           <ItemCategoryAccordian
@@ -114,6 +140,14 @@ const RestaurantMenuDetails = () => {
           />
         ))}
       </div>
+      {/* nestedItemCategory Accordian */}
+      {nestedItemCategory && (
+        <div>
+          {nestedItemCategory?.map((c, index) => (
+            <NestedItemCategory key={c?.card?.card?.title} c={c} />
+          ))}
+        </div>
+      )}
     </div>
   );
 };
