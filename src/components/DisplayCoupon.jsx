@@ -11,7 +11,7 @@ export const DisplayCoupon = ({ coupon }) => {
 
       <div>
         <h2 className='font-bold text-lg text-[#02060CEB]'>
-          {coupon?.info?.header}
+          {coupon?.info?.header?.slice(0, 20)}
         </h2>
         <p className='text-[#02060C73] text-sm font-bold'>
           {coupon?.info?.couponCode}

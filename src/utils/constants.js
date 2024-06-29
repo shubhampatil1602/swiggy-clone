@@ -18,9 +18,11 @@ export const CLOUDINARY_OFFER_URL =
 export const CLOUDINARY_TOP_PICKS_URL =
   'https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_292,h_300/';
 
-export const ERROR_MEME = 'https://i.imgflip.com/8uc6ey.jpg';
+export const ERROR_MEME =
+  'https://media.tenor.com/wW1pBiZGZZoAAAAM/jethalal-in-rain-sad-jethalal-in-rain.gif';
 
-export const MEME_2 = 'https://i.imgflip.com/8uk2nj.jpg';
+export const MEME_2 =
+  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTnnymn251JNvmTqUIxoeWlKmMMxUt0_Xz6fA&s';
 
 export const OFFLINE_MEME = 'https://i.imgflip.com/8ukfnw.jpg';
 

@@ -127,6 +127,7 @@ const RestaurantMenuDetails = () => {
               ))}
             </div>
           </div>
+          <hr className='border-b-[14px] border-gray-100' />
         </>
       )}
       {/* Single Accordian */}

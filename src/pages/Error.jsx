@@ -10,7 +10,11 @@ const Error = () => {
       <Header />
       <div className='flex flex-col gap-6 justify-center items-center relative z-0 top-36'>
         <Link to={'/'} className='flex items-center justify-center'>
-          <img src={ERROR_MEME} className='shadow-2xl w-2/3 ' alt='error' />
+          <img
+            src={ERROR_MEME}
+            className='shadow-xl h-[390px] object-top object-cover w-[400px] '
+            alt='error'
+          />
         </Link>
         <div>
           <p className='font-semibold text-lg'>

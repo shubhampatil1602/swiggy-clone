@@ -3,6 +3,7 @@ import { PiSquareLogoFill } from 'react-icons/pi';
 import { IoStar } from 'react-icons/io5';
 import { useDispatch } from 'react-redux';
 import { addItem } from '../redux/cartSlice';
+import { Toaster, toast } from 'sonner';
 
 const ItemCategoryAccList = ({ c }) => {
   const dispatch = useDispatch();
@@ -12,6 +13,7 @@ const ItemCategoryAccList = ({ c }) => {
   };
   return (
     <>
+      <Toaster richColors position='top-center' className='fixed top-24' />
       {c?.map((c) => (
         <div
           key={c?.card?.info?.id}
@@ -69,7 +71,10 @@ const ItemCategoryAccList = ({ c }) => {
             />
             <div className='flex flex-col justify-center items-center absolute top-[6.6rem] left-[1.1rem]'>
               <button
-                onClick={() => handleAddItem(c)}
+                onClick={() => {
+                  handleAddItem(c);
+                  toast.success(`${c?.card?.info?.name} added to cart`);
+                }}
                 className='bg-white hover:bg-gray-200 text-green-600 font-bold text-lg border mx-auto py-1 px-10 rounded-lg shadow-md'
               >
                 ADD
