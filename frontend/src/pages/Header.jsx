@@ -36,7 +36,9 @@ const Header = () => {
           <span className='hover:text-orange-500'>
             {onlineStatus ? '🟢 Online ' : '🔴 Offline'}
           </span>
-          <span className='hover:text-orange-500'>Offers</span>
+          <Link to={'/search'} className='hover:text-orange-500'>
+            Search
+          </Link>
           <Link to={'/about'} className='hover:text-orange-500'>
             About
           </Link>

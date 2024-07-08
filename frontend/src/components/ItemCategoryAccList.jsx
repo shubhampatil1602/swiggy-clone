@@ -67,7 +67,7 @@ const ItemCategoryAccList = ({ c }) => {
                   : CLOUDINARY_CDN_URL + c?.card?.info?.imageId
               }
               alt='dish'
-              className='h-[130px] object-fit w-full shadow rounded-2xl border'
+              className='h-[130px] object-cover w-full shadow rounded-2xl border'
             />
             <div className='flex flex-col justify-center items-center absolute top-[6.6rem] left-[1.1rem]'>
               <button

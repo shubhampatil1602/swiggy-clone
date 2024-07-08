@@ -6,12 +6,7 @@ const useRestaurantMenuDetails = (resId) => {
 
   const fetchData = async () => {
     try {
-      const res = await fetch(
-        CORS_PROXY +
-          RESTAURANTS_MENU_DETAILS_URL +
-          resId +
-          '&catalog_qa=undefined&submitAction=ENTER'
-      );
+      const res = await fetch(RESTAURANTS_MENU_DETAILS_URL + resId);
       const r = await res.json();
       setResInfo(r?.data);
     } catch (error) {

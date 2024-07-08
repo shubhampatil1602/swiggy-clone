@@ -31,7 +31,7 @@ const useRestaurants = () => {
 
   const fetchRestaurants = async () => {
     try {
-      const res = await fetch(CORS_PROXY + MAIN_API_URL);
+      const res = await fetch(MAIN_API_URL);
       const r = await res.json();
 
       // WhatIsOnYourMind

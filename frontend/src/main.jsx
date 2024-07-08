@@ -9,6 +9,7 @@ import Home from './pages/Home.jsx';
 import RestaurantMenuDetails from './pages/RestaurantMenuDetails.jsx';
 import { Provider } from 'react-redux';
 import appStore from './redux/appStore.js';
+import Search from './pages/Search.jsx';
 
 // const RestaurantMenuDetails = lazy(() =>
 //   import('./pages/RestaurantMenuDetails.jsx')
@@ -37,7 +38,10 @@ const appRouter = createBrowserRouter([
         path: '/contact',
         element: <Contact />,
       },
-
+      {
+        path: '/search',
+        element: <Search />,
+      },
       {
         path: '/restaurants/:resId',
         element: <RestaurantMenuDetails />,
