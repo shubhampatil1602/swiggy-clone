@@ -12,6 +12,10 @@ app.use((req, res, next) => {
   next();
 });
 
+app.get('/', (req, res) => {
+  res.send('Hello World!');
+});
+
 app.get('/api/restaurants', async (req, res) => {
   try {
     const response = await axios.get(
