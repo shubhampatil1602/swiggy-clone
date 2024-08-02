@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { CORS_PROXY, MAIN_API_URL } from '../utils/constants';
+import { MAIN_API_URL } from '../utils/constants';
 
 const useRestaurants = () => {
   // WhatIsOnYourMind State

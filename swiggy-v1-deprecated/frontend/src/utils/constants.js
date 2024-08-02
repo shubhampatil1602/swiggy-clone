@@ -4,10 +4,18 @@
 // export const RESTAURANTS_MENU_DETAILS_URL =
 //   'https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=12.9715987&lng=77.5945627&restaurantId=';
 
+// -----------------------------------------------------------------
 export const MAIN_API_URL = 'http://localhost:3001/api/restaurants/';
 
 export const RESTAURANTS_MENU_DETAILS_URL =
   'http://localhost:3001/api/restaurants/';
+// -----------------------------------------------------------------
+
+// export const MAIN_API_URL =
+//   'https://swiggy-clone-raqlxihn2-shubham-patils-projects-6eeec691.vercel.app/api/restaurants/';
+
+// export const RESTAURANTS_MENU_DETAILS_URL =
+//   'https://swiggy-clone-raqlxihn2-shubham-patils-projects-6eeec691.vercel.app/api/restaurants/';
 
 export const CORS_PROXY = 'https://thingproxy.freeboard.io/fetch/';
 
