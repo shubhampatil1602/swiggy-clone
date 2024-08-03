@@ -8,15 +8,36 @@ import { MdCallMade } from 'react-icons/md';
 import { RxCross2, RxHamburgerMenu } from 'react-icons/rx';
 import { useContext, useState } from 'react';
 import { Link, Outlet } from 'react-router-dom';
-import { Visibility } from '../contexts/locationContext';
+import { CoOrdinate, Visibility } from '../contexts/locationContext';
+import { GoLocation } from 'react-icons/go';
 
 const Navbar = () => {
   const [toggle, setToggle] = useState(false);
+  const [cityData, setCityData] = useState([]);
+  const [add, setAdd] = useState('Bengaluru');
   const { visibility, setVisibility } = useContext(Visibility);
+  const { setCoOrdinate } = useContext(CoOrdinate);
   const { flexCenter, flexBetween, navLink, responsiveNavLink } = styles;
 
-  const handleConfigDriven = () => {
-    setVisibility((visibility) => !visibility);
+  const searchCity = async (city) => {
+    const res = await fetch(
+      'https://www.swiggy.com/dapi/misc/place-autocomplete?input=' + city
+    );
+    const data = await res.json();
+    setCityData(data?.data);
+  };
+
+  const fetchLatLng = async (placeId) => {
+    const res = await fetch(
+      'https://www.swiggy.com/dapi/misc/address-recommend?place_id=' + placeId
+    );
+    const data = await res.json();
+    setCoOrdinate({
+      lat: data?.data[0]?.geometry?.location?.lat,
+      lng: data?.data[0]?.geometry?.location?.lng,
+    });
+    console.log(data);
+    setAdd(data?.data[0]?.address_components[0]?.long_name);
   };
 
   const handleVisibility = () => {
@@ -50,7 +71,32 @@ const Navbar = () => {
                 type='search'
                 className='outline-none border shadow-md px-4 py-3 w-[90%] caret-orange-500'
                 placeholder='Search your city...'
+                onChange={(e) => searchCity(e.target.value)}
               />
+
+              <div className='w-[90%] px-5 py-6'>
+                <ul>
+                  {cityData?.map((data) => (
+                    <li
+                      key={data?.place_id}
+                      onClick={() => fetchLatLng(data?.place_id)}
+                      className='flex gap-4 cursor-pointer'
+                    >
+                      <div className='pt-7'>
+                        <GoLocation size={20} />
+                      </div>
+                      <div className='flex flex-col border-b border-[#BBBCC2] border-dashed py-6 w-full'>
+                        <span className='font-medium text-[#282c3f] text-base hover:text-orange-500'>
+                          {data?.structured_formatting?.main_text}
+                        </span>
+                        <span className='text-[#93959f] text-[13px] font-extralight'>
+                          {data?.structured_formatting?.secondary_text}
+                        </span>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
           </div>
         </div>
@@ -75,7 +121,7 @@ const Navbar = () => {
               onClick={handleVisibility}
             >
               <span className='font-bold text-xs border-b-2 pb-0.5 tracking-wide border-black hover:text-orange-500 hover:border-orange-500'>
-                Other
+                {add}
               </span>
               <IoIosArrowDown color='#F87315' size={20} />
             </div>

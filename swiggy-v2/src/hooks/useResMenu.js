@@ -1,11 +1,16 @@
-import { useEffect, useState } from 'react';
-import { SWIGGY_RES_MENU_URL } from '../utils/constants';
+import { useContext, useEffect, useState } from 'react';
+import { CoOrdinate } from '../contexts/locationContext';
 
 const useResMenu = (resId) => {
   const [resMenu, setResMenu] = useState(null);
   const [offers, setOffers] = useState([]);
   const [ItemCategory, setItemCategory] = useState([]);
   const [topPicks, setTopPicks] = useState([]);
+  const {
+    coOrdinate: { lat, lng },
+  } = useContext(CoOrdinate);
+
+  const SWIGGY_RES_MENU_URL = `https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=${lat}&lng=${lng}&restaurantId=`;
 
   const fetchResMenu = async () => {
     const res = await fetch(SWIGGY_RES_MENU_URL + resId);
@@ -35,7 +40,7 @@ const useResMenu = (resId) => {
 
   useEffect(() => {
     fetchResMenu();
-  }, []);
+  }, [lat, lng]);
 
   return {
     resMenu,
