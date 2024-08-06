@@ -37,7 +37,8 @@ const Navbar = () => {
       lng: data?.data[0]?.geometry?.location?.lng,
     });
     console.log(data);
-    setAdd(data?.data[0]?.address_components[0]?.long_name);
+    setAdd(data?.data[0]?.formatted_address);
+    console.log(data?.data[0]?.formatted_address.split(', '));
   };
 
   const handleVisibility = () => {
@@ -76,25 +77,35 @@ const Navbar = () => {
 
               <div className='w-[90%] px-5 py-6'>
                 <ul>
-                  {cityData?.map((data) => (
-                    <li
-                      key={data?.place_id}
-                      onClick={() => fetchLatLng(data?.place_id)}
-                      className='flex gap-4 cursor-pointer'
-                    >
-                      <div className='pt-7'>
-                        <GoLocation size={20} />
-                      </div>
-                      <div className='flex flex-col border-b border-[#BBBCC2] border-dashed py-6 w-full'>
-                        <span className='font-medium text-[#282c3f] text-base hover:text-orange-500'>
-                          {data?.structured_formatting?.main_text}
-                        </span>
-                        <span className='text-[#93959f] text-[13px] font-extralight'>
-                          {data?.structured_formatting?.secondary_text}
-                        </span>
-                      </div>
-                    </li>
-                  ))}
+                  {cityData?.map((data, index) => {
+                    const isLast = index === cityData?.length - 1;
+                    return (
+                      <li
+                        key={data?.place_id}
+                        onClick={() => {
+                          fetchLatLng(data?.place_id);
+                          handleVisibility();
+                        }}
+                        className='flex gap-4 cursor-pointer'
+                      >
+                        <div className='pt-7'>
+                          <GoLocation size={20} />
+                        </div>
+                        <div
+                          className={`flex flex-col ${
+                            !isLast && 'border-b border-[#BBBCC2] border-dashed'
+                          } py-5 w-full`}
+                        >
+                          <span className='font-medium text-[#282c3f] text-base hover:text-orange-500'>
+                            {data?.structured_formatting?.main_text}
+                          </span>
+                          <span className='text-[#93959f] text-[13px] font-extralight'>
+                            {data?.structured_formatting?.secondary_text}
+                          </span>
+                        </div>
+                      </li>
+                    );
+                  })}
                 </ul>
               </div>
             </div>
@@ -108,8 +119,8 @@ const Navbar = () => {
           boxShadow: '0 15px 40px -20px rgba(40, 44, 63, 0.15)',
         }}
       >
-        <div className={`w-[80%] ${flexBetween}`}>
-          <div className='flex items-center gap-9'>
+        <div className={`w-[90%] sm:w-[80%] ${flexBetween}`}>
+          <div className='flex items-center gap-2 sm:gap-9'>
             <Link to={'/'}>
               <SiSwiggy
                 size={49}
@@ -117,11 +128,14 @@ const Navbar = () => {
               />
             </Link>
             <div
-              className='flex gap-3 cursor-pointer'
+              className='flex gap-1.5 sm:gap-3 cursor-pointer'
               onClick={handleVisibility}
             >
-              <span className='font-bold text-xs border-b-2 pb-0.5 tracking-wide border-black hover:text-orange-500 hover:border-orange-500'>
-                {add}
+              <span className='font-bold text-xs border-b-2 pb-0.5 line-clamp-1 tracking-wide border-black hover:text-orange-500 hover:border-orange-500'>
+                {add?.split(', ')[0]}{' '}
+              </span>
+              <span className='font-light text-xs text-[#686b78] max-w-[100px] line-clamp-1'>
+                {add?.slice(0, 50)}
               </span>
               <IoIosArrowDown color='#F87315' size={20} />
             </div>
