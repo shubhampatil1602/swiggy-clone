@@ -1,5 +1,5 @@
+import Card from '../components/Card';
 import useFetch from '../hooks/useFetch';
-import { Card } from './TopRestaurantChains';
 
 const ResWithOnlineFood = () => {
   const { data, resWithOnlineFoods } = useFetch();

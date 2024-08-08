@@ -29,8 +29,16 @@ const ItemCatAcc = ({ card }) => {
           {openSingleAcc ? <FaAngleUp /> : <FaAngleDown />}
         </div>
 
-        {card?.itemCards?.map(({ card: { info } }) => {
-          return openSingleAcc && <ItemCatAccData key={info?.id} {...info} />;
+        {card?.itemCards?.map((itemCard, index) => {
+          return (
+            openSingleAcc && (
+              <ItemCatAccData
+                key={itemCard?.card?.info?.id}
+                index={index === card?.itemCards?.length - 1}
+                info={itemCard?.card?.info}
+              />
+            )
+          );
         })}
       </>
     );

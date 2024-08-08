@@ -7,17 +7,26 @@ import { BsCart3 } from 'react-icons/bs';
 import { MdCallMade } from 'react-icons/md';
 import { RxCross2, RxHamburgerMenu } from 'react-icons/rx';
 import { useContext, useState } from 'react';
-import { Link, Outlet } from 'react-router-dom';
-import { CoOrdinate, Visibility } from '../contexts/locationContext';
+import { Link, Outlet, useNavigate } from 'react-router-dom';
+import { CoOrdinate } from '../contexts/locationContext';
 import { GoLocation } from 'react-icons/go';
+import { useDispatch, useSelector } from 'react-redux';
+import { locationToggleFn } from '../redux/toggleSlice';
 
 const Navbar = () => {
   const [toggle, setToggle] = useState(false);
   const [cityData, setCityData] = useState([]);
   const [add, setAdd] = useState('Bengaluru');
-  const { visibility, setVisibility } = useContext(Visibility);
+  const navigate = useNavigate();
   const { setCoOrdinate } = useContext(CoOrdinate);
   const { flexCenter, flexBetween, navLink, responsiveNavLink } = styles;
+
+  const visibility = useSelector(
+    (state) => state.locationSearchToggleSlice.locationSearchToggle
+  );
+  const cartItems = useSelector((state) => state.cartSlice.items);
+
+  const dispatch = useDispatch();
 
   const searchCity = async (city) => {
     const res = await fetch(
@@ -36,13 +45,12 @@ const Navbar = () => {
       lat: data?.data[0]?.geometry?.location?.lat,
       lng: data?.data[0]?.geometry?.location?.lng,
     });
-    console.log(data);
     setAdd(data?.data[0]?.formatted_address);
-    console.log(data?.data[0]?.formatted_address.split(', '));
+    navigate('/');
   };
 
   const handleVisibility = () => {
-    setVisibility((visibility) => !visibility);
+    dispatch(locationToggleFn());
   };
 
   const handleToggle = () => {
@@ -159,7 +167,7 @@ const Navbar = () => {
 
             <div className={`${flexCenter} gap-2 ${navLink}`}>
               <BsCart3 size={17} />
-              <span>Cart 0</span>
+              <Link to={'/cart'}>Cart {cartItems?.length}</Link>
             </div>
           </div>
 
@@ -194,7 +202,7 @@ const Navbar = () => {
               className={`${flexCenter} gap-2 ${responsiveNavLink} py-4 px-10`}
             >
               <BsCart3 size={17} />
-              <span>Cart 0</span>
+              <Link to={'/cart'}>Cart {cartItems?.length}</Link>
             </div>
           </div>
         )}

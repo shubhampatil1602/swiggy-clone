@@ -3,15 +3,28 @@ import { CLOUDINARY_CDN_URL, NO_IMG_AVAILABLE } from '../utils/constants';
 import { Tags } from 'lucide-react';
 import { PiSquareLogoFill } from 'react-icons/pi';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { addItem } from '../redux/cartSlice';
 
-const ItemCatAccData = (info) => {
+const ItemCatAccData = ({ info, index }) => {
+  // console.log(info);
+  const dispatch = useDispatch();
+
   const [showMore, setShowMore] = useState(false);
+
+  const addToCart = () => {
+    dispatch(addItem(info));
+  };
   const handleShowMore = () => {
     setShowMore((showMore) => !showMore);
   };
   return (
     <>
-      <div className={`flex justify-between border-b mt-8 mb-3 px-4 pb-12`}>
+      <div
+        className={`flex justify-between ${
+          !index && 'border-b'
+        } mt-8 mb-3 px-4 pb-12`}
+      >
         <div className='w-3/4'>
           <h4 className='flex gap-1'>
             <span>
@@ -82,7 +95,10 @@ const ItemCatAccData = (info) => {
             className='h-[130px] object-cover w-full shadow rounded-2xl border'
           />
           <div className='flex flex-col justify-center items-center absolute top-[6.6rem] left-[1.1rem]'>
-            <button className='bg-white hover:bg-gray-200 text-green-600 font-bold text-lg border mx-auto py-1 px-10 rounded-lg shadow-md'>
+            <button
+              onClick={addToCart}
+              className='bg-white hover:bg-gray-200 text-green-600 font-bold text-lg border mx-auto py-1 px-10 rounded-lg shadow-md'
+            >
               ADD
             </button>
             <p className='text-xs font-light text-gray-500'>
