@@ -27,6 +27,7 @@ const useFetch = () => {
         data?.data?.cards[0].card?.card?.gridElements?.infoWithStyle
           ?.restaurants
     );
+
     setResWithOnlineFoods(
       data?.data?.cards[4].card?.card?.gridElements?.infoWithStyle?.restaurants
     );
@@ -45,3 +46,18 @@ const useFetch = () => {
 };
 
 export default useFetch;
+
+export const filterOptions = [
+  {
+    title: 'Offers',
+  },
+  {
+    title: 'Rs. 300-Rs. 600',
+  },
+  {
+    title: 'Less than Rs. 300',
+  },
+  {
+    title: 'Ratings 4.0+',
+  },
+];

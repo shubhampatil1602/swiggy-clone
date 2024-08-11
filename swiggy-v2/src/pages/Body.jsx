@@ -7,7 +7,6 @@ import LocationUnserviceable from '../components/LocationUnserviceable';
 
 const Body = () => {
   const { data } = useFetch();
-  console.log(data);
   if (
     data?.cards[0]?.card?.card['@type'] ===
     'type.googleapis.com/swiggy.seo.widgets.v1.SwiggyNotPresent'

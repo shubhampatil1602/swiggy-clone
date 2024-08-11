@@ -122,7 +122,7 @@ const Navbar = () => {
       </div>
 
       <nav
-        className={`w-full bg-white h-20 ${flexCenter}`}
+        className={`w-full bg-white h-20 ${flexCenter} sticky h-20 inset-x-0 top-0 z-10 border-b border-gray-200 bg-white/75 backdrop-blur-lg transition-all`}
         style={{
           boxShadow: '0 15px 40px -20px rgba(40, 44, 63, 0.15)',
         }}

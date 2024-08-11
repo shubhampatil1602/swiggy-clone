@@ -5,6 +5,7 @@ import { PiSquareLogoFill } from 'react-icons/pi';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addItem } from '../redux/cartSlice';
+import { toast } from 'sonner';
 
 const ItemCatAccData = ({ info, index }) => {
   // console.log(info);
@@ -14,6 +15,11 @@ const ItemCatAccData = ({ info, index }) => {
 
   const addToCart = () => {
     dispatch(addItem(info));
+    toast.success(
+      `${info?.name.substring(0, 20).trim()}${
+        info?.name.length > 19 ? '..' : ''
+      } added to cart.`
+    );
   };
   const handleShowMore = () => {
     setShowMore((showMore) => !showMore);

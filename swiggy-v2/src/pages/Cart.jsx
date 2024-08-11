@@ -8,6 +8,8 @@ import {
   removeSingleItem,
   removeSingleItemQuantity,
 } from '../redux/cartSlice';
+import { toast } from 'sonner';
+import { Link } from 'react-router-dom';
 
 const Cart = () => {
   const items = useSelector((state) => state.cartSlice.items);
@@ -17,11 +19,25 @@ const Cart = () => {
 
   const handleClearCart = () => {
     dispatch(clearCart());
+    toast.success('Cart cleared.');
   };
 
-  return (
+  return items?.length === 0 ? (
     <Section>
-      {items.length > 0 && (
+      <div className='h-[90vh] flex gap-6 flex-col items-center justify-center'>
+        <img
+          src='/empty_cart.png'
+          alt='empty cart.'
+          className='h-72 sm:h-80 w-80 mx-auto'
+        />
+        <button className='uppercase bg-[#ff5200] font-semibold py-[11px] px-[20px] text-white text-[16px] tracking-[0.010em]'>
+          <Link to={'/'}>See restaurants near you</Link>
+        </button>
+      </div>
+    </Section>
+  ) : (
+    <Section>
+      {items?.length > 0 && (
         <div className='flex justify-end mt-4'>
           <button
             onClick={handleClearCart}
@@ -72,7 +88,9 @@ const Cart = () => {
 
           <button className='bg-white text-green-600 font-bold text-lg border w-[100px] sm:w-[130px] h-[40px] shadow-md flex justify-between items-center'>
             <span
-              onClick={() => dispatch(removeSingleItemQuantity(info))}
+              onClick={() => {
+                dispatch(removeSingleItemQuantity(info));
+              }}
               className='px-4 hover:scale-125 duration-200 text-gray-500'
             >
               -
@@ -87,17 +105,26 @@ const Cart = () => {
           </button>
           <button
             className='bg-white ml-3 text-red-600 font-bold text-lg border w-[40px] h-[40px] shadow-md flex justify-center items-center'
-            onClick={() => dispatch(removeSingleItem(info))}
+            onClick={() => {
+              dispatch(removeSingleItem(info));
+              toast.success(
+                `${info?.name.substring(0, 20).trim()}${
+                  info?.name.length > 19 ? '..' : ''
+                } removed from cart.`
+              );
+            }}
           >
             X
           </button>
         </div>
       ))}
 
-      <div className='flex justify-between mt-8'>
-        <p className='font-semibold'>TO PAY</p>
-        <h2 className='font-semibold'>₹{total}</h2>
-      </div>
+      {items?.length > 0 && (
+        <div className='flex justify-between mt-8'>
+          <p className='font-semibold'>TO PAY</p>
+          <h2 className='font-semibold'>₹{total}</h2>
+        </div>
+      )}
     </Section>
   );
 };
