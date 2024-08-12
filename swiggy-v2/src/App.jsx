@@ -6,10 +6,14 @@ import RestaurantMenu from './pages/RestaurantMenu';
 import { CoOrdinate } from './contexts/locationContext';
 import { useSelector } from 'react-redux';
 import Cart from './pages/Cart';
+import Search from './pages/Search';
 
 const App = () => {
   const visibility = useSelector(
     (state) => state.locationSearchToggleSlice.locationSearchToggle
+  );
+  const authVisibility = useSelector(
+    (state) => state.locationSearchToggleSlice.authToggle
   );
   const [coOrdinate, setCoOrdinate] = useState({
     lat: 12.9352403,
@@ -18,17 +22,23 @@ const App = () => {
 
   return (
     <CoOrdinate.Provider value={{ coOrdinate, setCoOrdinate }}>
-      <div
-        className={`${visibility ? 'max-h-screen overflow-hidden' : 'h-full'}`}
+      <main
+        className={`overflow-hidden w-full max-w-full ${
+          visibility || authVisibility
+            ? 'max-h-screen overflow-hidden'
+            : 'h-full'
+        }`}
       >
         <Routes>
           <Route path='/' element={<Navbar />}>
             <Route path='/' element={<Body />} />
             <Route path='/cart' element={<Cart />} />
             <Route path='/restaurant/:resId' element={<RestaurantMenu />} />
+            <Route path='/search' element={<Search />} />
+            <Route path='*' element={<Body />} />
           </Route>
         </Routes>
-      </div>
+      </main>
     </CoOrdinate.Provider>
   );
 };

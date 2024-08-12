@@ -4,14 +4,18 @@ const toggleSlice = createSlice({
   name: 'locationSearchToggleSlice',
   initialState: {
     locationSearchToggle: false,
+    authToggle: false,
   },
   reducers: {
     locationToggleFn: (state) => {
       state.locationSearchToggle = !state.locationSearchToggle;
     },
+    authToggleFn: (state) => {
+      state.authToggle = !state.authToggle;
+    },
   },
 });
 
-export const { locationToggleFn } = toggleSlice.actions;
+export const { locationToggleFn, authToggleFn } = toggleSlice.actions;
 
 export default toggleSlice.reducer;

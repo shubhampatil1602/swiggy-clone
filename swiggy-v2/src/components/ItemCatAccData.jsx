@@ -8,7 +8,6 @@ import { addItem } from '../redux/cartSlice';
 import { toast } from 'sonner';
 
 const ItemCatAccData = ({ info, index }) => {
-  // console.log(info);
   const dispatch = useDispatch();
 
   const [showMore, setShowMore] = useState(false);
@@ -20,6 +19,9 @@ const ItemCatAccData = ({ info, index }) => {
         info?.name.length > 19 ? '..' : ''
       } added to cart.`
     );
+    const cartItems = [];
+    cartItems.push(...info);
+    localStorage.setItem('cartItems', JSON.stringify(cartItems));
   };
   const handleShowMore = () => {
     setShowMore((showMore) => !showMore);
@@ -34,7 +36,8 @@ const ItemCatAccData = ({ info, index }) => {
         <div className='w-3/4'>
           <h4 className='flex gap-1'>
             <span>
-              {info?.isVeg == 1 ? (
+              {info?.isVeg === 1 ||
+              info?.itemAttribute?.vegClassifier === 'VEG' ? (
                 <PiSquareLogoFill size={20} color='green' />
               ) : (
                 <PiSquareLogoFill size={20} color='red' />

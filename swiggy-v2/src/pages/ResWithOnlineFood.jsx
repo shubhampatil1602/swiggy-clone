@@ -60,7 +60,7 @@ const ResWithOnlineFood = () => {
           {data?.cards[2]?.card?.card?.title}
         </h1>
       </div>
-      <div className='flex gap-3 pl-4 mt-2 mb-6 w-full'>
+      <div className='flex flex-wrap gap-3 pl-4 mt-2 mb-6 w-full'>
         {filterOptions.map((btn) => (
           <button
             key={btn.title}

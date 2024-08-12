@@ -1,6 +1,8 @@
 const Section = ({ children }) => {
   return (
-    <section className={`w-[75%] mx-auto overflow-hidden`}>{children}</section>
+    <section className={`sm:w-[75%] w-[96%] mx-auto overflow-hidden`}>
+      {children}
+    </section>
   );
 };
 

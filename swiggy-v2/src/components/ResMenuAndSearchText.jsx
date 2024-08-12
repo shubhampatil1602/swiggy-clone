@@ -10,7 +10,7 @@ const ResMenuAndSearchText = () => {
         </h2>
       </div>
       <Link
-        to={'/'}
+        to={'/search'}
         className='flex items-center p-4 mb-8 bg-[#02060c0d] rounded-2xl'
       >
         <span className='w-[97%] text-center text-sm font-semibold text-gray-500'>

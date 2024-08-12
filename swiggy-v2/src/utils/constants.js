@@ -9,3 +9,8 @@ export const CLOUDINARY_CDN_URL =
 
 export const NO_IMG_AVAILABLE =
   'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdGodbj0sF1AYkdbc9LsjL1FDgHVGf0jHV_g&s';
+
+export const JETHA1 =
+  'https://media.tenor.com/rcUlT6pAH9MAAAAM/jethalal-sab-changa-c.gif';
+
+export const JETHA_WELCOME = 'https://c.tenor.com/T3jmlreIb5EAAAAd/tenor.gif';

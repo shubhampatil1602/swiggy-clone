@@ -38,10 +38,16 @@ const Cart = () => {
   ) : (
     <Section>
       {items?.length > 0 && (
-        <div className='flex justify-end mt-4'>
+        <div className='flex gap-4 sm:justify-end mt-4'>
           <button
             onClick={handleClearCart}
-            className='bg-red-500 text-white font-bold text-lg border w-[100px] sm:w-[130px] h-[40px] shadow-md flex justify-center items-center'
+            className='bg-green-600 flex-1 sm:flex-none text-white font-bold text-lg border w-[100px] sm:w-[130px] h-[40px] shadow-md flex justify-center items-center'
+          >
+            Place Order
+          </button>
+          <button
+            onClick={handleClearCart}
+            className='bg-red-500 flex-1 sm:flex-none text-white font-bold text-lg border w-[100px] sm:w-[130px] h-[40px] shadow-md flex justify-center items-center'
           >
             Clear Cart
           </button>
@@ -120,9 +126,9 @@ const Cart = () => {
       ))}
 
       {items?.length > 0 && (
-        <div className='flex justify-between mt-8'>
+        <div className='flex justify-between px-8 my-8'>
           <p className='font-semibold'>TO PAY</p>
-          <h2 className='font-semibold'>₹{total}</h2>
+          <h2 className='font-semibold text-2xl'>₹{total}</h2>
         </div>
       )}
     </Section>
