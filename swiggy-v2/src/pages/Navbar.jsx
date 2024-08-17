@@ -160,7 +160,7 @@ const Navbar = () => {
         ></div>
 
         <div
-          className={`absolute duration-[550ms] bg-white h-full w-full sm:w-[70%] md:w-[70%] lg:w-[37%] z-30 ${
+          className={`fixed duration-[550ms] bg-white h-full w-full sm:w-[70%] md:w-[70%] lg:w-[37%] z-30 ${
             authVisibility ? 'right-0' : '-right-full'
           }`}
         >
