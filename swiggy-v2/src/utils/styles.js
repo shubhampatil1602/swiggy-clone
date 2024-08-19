@@ -7,4 +7,6 @@ export const styles = {
     'text-[#3D4152] hover:text-orange-500 hover:bg-slate-100 cursor-pointer font-semibold tracking-wide text-sm cursor-pointer`',
   filterBtn:
     'text-[#02060cbf] text-sm rounded-[18px] py-[6px] px-[12px] shadow-md font-medium flex justify-center items-center gap-1 min-w-[100px] max-h-[36px] border',
+  searchFilterBtn:
+    'font-bold text-sm rounded-[18px] py-[6px] px-[12px] flex justify-center items-center gap-1 min-w-[100px] max-h-[36px] border',
 };
