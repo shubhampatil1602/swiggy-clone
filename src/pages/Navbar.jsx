@@ -248,7 +248,7 @@ const Navbar = () => {
                   <>
                     <img
                       src={userData?.photo}
-                      className='h-[30x] w-[30px] rounded-full object-contain'
+                      className='h-[25x] w-[25px] rounded-full object-contain'
                       alt='welcome'
                     />
                     {userData?.name.split(' ')[0]}
