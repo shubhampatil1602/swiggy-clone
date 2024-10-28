@@ -13,8 +13,10 @@ const Card = (topRestaurantChain) => {
     sla: { slaString },
   } = topRestaurantChain?.info;
 
+  // console.log(topRestaurantChain);
+  //4
   return (
-    <Link to={`/restaurant/${topRestaurantChain?.cta?.link?.split('/')[4]}`}>
+    <Link to={`/restaurant/${topRestaurantChain?.cta?.link?.split('/')[5]}`}>
       <div className='min-w-[244px]'>
         <img
           src={

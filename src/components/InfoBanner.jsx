@@ -2,6 +2,7 @@ import { FaCaretDown } from 'react-icons/fa6';
 import { MdStars } from 'react-icons/md';
 
 const InfoBanner = ({ info }) => {
+  console.log(info);
   return (
     <div className='w-full h-[206.19px] my-2 rounded-[30px] px-4 pb-[18px] bg-gradient-to-t from-gray-300/80'>
       <div className='w-full border border-gray-200 rounded-[20px] h-full bg-white'>

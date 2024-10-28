@@ -3,26 +3,11 @@ import { CLOUDINARY_CDN_URL, NO_IMG_AVAILABLE } from '../utils/constants';
 import { Tags } from 'lucide-react';
 import { PiSquareLogoFill } from 'react-icons/pi';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { addItem } from '../redux/cartSlice';
-import { toast } from 'sonner';
+import AddToCartButton from './AddToCartButton';
 
 const ItemCatAccData = ({ info, index }) => {
-  const dispatch = useDispatch();
-
   const [showMore, setShowMore] = useState(false);
 
-  const addToCart = () => {
-    dispatch(addItem(info));
-    toast.success(
-      `${info?.name.substring(0, 20).trim()}${
-        info?.name.length > 19 ? '..' : ''
-      } added to cart.`
-    );
-    const cartItems = [];
-    cartItems.push(...info);
-    localStorage.setItem('cartItems', JSON.stringify(cartItems));
-  };
   const handleShowMore = () => {
     setShowMore((showMore) => !showMore);
   };
@@ -103,17 +88,8 @@ const ItemCatAccData = ({ info, index }) => {
             alt='dish'
             className='h-[130px] object-cover w-full shadow rounded-2xl border'
           />
-          <div className='flex flex-col justify-center items-center absolute top-[6.6rem] left-[1.1rem]'>
-            <button
-              onClick={addToCart}
-              className='bg-white hover:bg-gray-200 text-green-600 font-bold text-lg border mx-auto py-1 px-10 rounded-lg shadow-md'
-            >
-              ADD
-            </button>
-            <p className='text-xs font-light text-gray-500'>
-              {info?.addons?.length > 0 && 'Customisable'}
-            </p>
-          </div>
+
+          <AddToCartButton info={info} length={info?.addons?.length} />
         </div>
       </div>
     </>

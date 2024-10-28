@@ -10,10 +10,14 @@ const useResMenu = (resId) => {
     coOrdinate: { lat, lng },
   } = useContext(CoOrdinate);
 
+  // const SWIGGY_RES_MENU_URL = `https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=${lat}&lng=${lng}&restaurantId=`;
+
   const SWIGGY_RES_MENU_URL = `https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=${lat}&lng=${lng}&restaurantId=`;
 
+  console.log(SWIGGY_RES_MENU_URL);
+
   const fetchResMenu = async () => {
-    const res = await fetch(SWIGGY_RES_MENU_URL + resId);
+    const res = await fetch(SWIGGY_RES_MENU_URL + resId.slice(4));
     const data = await res.json();
 
     setResMenu(data);
@@ -36,8 +40,8 @@ const useResMenu = (resId) => {
           itemCat?.card?.card?.itemCards || itemCat?.card?.card?.categories
       )
     );
+    console.log(data);
   };
-
   useEffect(() => {
     fetchResMenu();
   }, [lat, lng]);
