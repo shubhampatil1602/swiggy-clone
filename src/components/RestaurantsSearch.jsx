@@ -1,9 +1,9 @@
-import { IoStar } from 'react-icons/io5';
-import { CLOUDINARY_CDN_URL, NO_IMG_AVAILABLE } from '../utils/constants';
+import { IoStar } from "react-icons/io5";
+import { CLOUDINARY_CDN_URL, NO_IMG_AVAILABLE } from "../utils/constants";
 
 const RestaurantsSearch = ({ dish }) => {
   return (
-    <div className='bg-white w-[410px] pl-3 pr-1 pt-6 pb-8 flex'>
+    <div className='bg-white border rounded-xl w-[410px] pl-3 pr-1 pt-6 pb-8 flex'>
       <div className='relative w-[100px]'>
         <img
           src={
@@ -39,12 +39,12 @@ const RestaurantsSearch = ({ dish }) => {
           </h2>
           <p className='flex items-center gap-1 text-[12.02px] font-medium text-[#686b78]'>
             <IoStar />
-            {dish?.card?.card?.info?.avgRating} ·{' '}
-            {dish?.card?.card?.info?.sla?.slaString} ·{' '}
+            {dish?.card?.card?.info?.avgRating} ·{" "}
+            {dish?.card?.card?.info?.sla?.slaString} ·{" "}
             {dish?.card?.card?.info?.costForTwoMessage}
           </p>
           <p className='text-[#93959f] text-xs font-light line-clamp-1'>
-            {dish?.card?.card?.info?.cuisines?.join(', ')}
+            {dish?.card?.card?.info?.cuisines?.join(", ")}
           </p>
         </div>
       </div>

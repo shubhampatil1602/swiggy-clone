@@ -1,4 +1,5 @@
-import Section from './Section';
+import Section from "./Section";
+import { LOCATION_UNSERVICEABLE } from "../utils/constants";
 
 const LocationUnserviceable = ({ title }) => {
   return (
@@ -6,9 +7,7 @@ const LocationUnserviceable = ({ title }) => {
       <div className='w-[380px] h-screen mx-auto'>
         <div className='flex justify-center items-center px-10 pt-20 pb-16'>
           <img
-            src={
-              'https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_476,h_476/portal/m/location_unserviceable.png'
-            }
+            src={LOCATION_UNSERVICEABLE}
             className='h-[238px] w-[238px]'
             alt='LocationUnserviceable'
           />

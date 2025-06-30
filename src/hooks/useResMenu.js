@@ -1,5 +1,5 @@
-import { useContext, useEffect, useState } from 'react';
-import { CoOrdinate } from '../contexts/locationContext';
+import { useContext, useEffect, useState } from "react";
+import { CoOrdinate } from "../contexts/locationContext";
 
 const useResMenu = (resId) => {
   const [resMenu, setResMenu] = useState(null);
@@ -10,11 +10,9 @@ const useResMenu = (resId) => {
     coOrdinate: { lat, lng },
   } = useContext(CoOrdinate);
 
-  // const SWIGGY_RES_MENU_URL = `https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=${lat}&lng=${lng}&restaurantId=`;
-
-  const SWIGGY_RES_MENU_URL = `https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=${lat}&lng=${lng}&restaurantId=`;
-
-  console.log(SWIGGY_RES_MENU_URL);
+  const SWIGGY_RES_MENU_URL = `${
+    import.meta.env.VITE_BASE_URL
+  }/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=${lat}&lng=${lng}&restaurantId=`;
 
   const fetchResMenu = async () => {
     const res = await fetch(SWIGGY_RES_MENU_URL + resId.slice(4));
@@ -29,8 +27,8 @@ const useResMenu = (resId) => {
     setTopPicks(
       data?.data?.cards?.[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.filter(
         (topPick) =>
-          topPick?.card?.card['@type'] ===
-          'type.googleapis.com/swiggy.presentation.food.v2.MenuCarousel'
+          topPick?.card?.card["@type"] ===
+          "type.googleapis.com/swiggy.presentation.food.v2.MenuCarousel"
       )
     );
 
@@ -40,7 +38,6 @@ const useResMenu = (resId) => {
           itemCat?.card?.card?.itemCards || itemCat?.card?.card?.categories
       )
     );
-    console.log(data);
   };
   useEffect(() => {
     fetchResMenu();

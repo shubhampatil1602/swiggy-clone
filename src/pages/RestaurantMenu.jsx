@@ -1,16 +1,17 @@
-import { useParams } from 'react-router-dom';
-import useResMenu from '../hooks/useResMenu';
-import DisplayCoupon from '../components/DisplayCoupon';
-import TopPicks from '../components/TopPicks';
-import ItemCatAcc from '../components/ItemCatAcc';
-import MenuPath from '../components/MenuPath';
-import InfoBanner from '../components/InfoBanner';
-import ResMenuAndSearchText from '../components/ResMenuAndSearchText';
+import { useParams } from "react-router-dom";
+import useResMenu from "../hooks/useResMenu";
+import DisplayCoupon from "../components/DisplayCoupon";
+import TopPicks from "../components/TopPicks";
+import ItemCatAcc from "../components/ItemCatAcc";
+import MenuPath from "../components/MenuPath";
+import InfoBanner from "../components/InfoBanner";
+import ResMenuAndSearchText from "../components/ResMenuAndSearchText";
+import { ShimmerSection } from "../components/Shimmer/Section";
 
 const RestaurantMenu = () => {
   const { resId } = useParams();
   const { resMenu, offers, topPicks, ItemCategory } = useResMenu(
-    resId?.split('-').at(-1)
+    resId?.split("-").at(-1)
   );
 
   const info = resMenu?.data?.cards[2]?.card?.card?.info;
@@ -24,12 +25,19 @@ const RestaurantMenu = () => {
       <InfoBanner info={info} />
       {/* Deals for you */}
       <div className='px-3 my-2'>
-        <h2 className='font-bold text-xl py-2 mt-6'>{'Deals for you'}</h2>
+        <h2 className='font-bold text-xl py-2 mt-6'>{"Deals for you"}</h2>
         <div className='overflow-x-auto hide-scrollbar container-carousel'>
           <div className='flex gap-3 transition-transform duration-500'>
-            {offers?.map((offer) => (
-              <DisplayCoupon key={offer?.info?.offerIds[0]} {...offer?.info} />
-            ))}
+            {offers && offers.length > 0 ? (
+              offers?.map((offer) => (
+                <DisplayCoupon
+                  key={offer?.info?.offerIds[0]}
+                  {...offer?.info}
+                />
+              ))
+            ) : (
+              <ShimmerSection />
+            )}
           </div>
         </div>
       </div>
@@ -56,9 +64,16 @@ const RestaurantMenu = () => {
       )}
       {/* Accordians */}
       <div>
-        {ItemCategory?.map(({ card: { card } }) => (
-          <ItemCatAcc key={card?.title} card={card} />
-        ))}
+        {ItemCategory && ItemCategory.length > 0 ? (
+          ItemCategory?.map(({ card: { card } }) => (
+            <ItemCatAcc key={card?.title} card={card} />
+          ))
+        ) : (
+          <div className='flex flex-col gap-4'>
+            <ShimmerSection />
+            <ShimmerSection />
+          </div>
+        )}
       </div>
     </section>
   );

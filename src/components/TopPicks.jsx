@@ -1,4 +1,4 @@
-import { CLOUDINARY_CDN_URL } from '../utils/constants';
+import { CLOUDINARY_CDN_URL } from "../utils/constants";
 
 const TopPicks = ({ creativeId, dish }) => {
   return (
@@ -9,9 +9,6 @@ const TopPicks = ({ creativeId, dish }) => {
           <p className='text-white'>
             ₹{dish?.price / 100 || dish?.defaultPrice / 100}
           </p>
-          <button className='bg-white hover:bg-gray-200 text-green-600 font-bold text-lg border py-1 px-10 rounded-lg shadow-md'>
-            ADD
-          </button>
         </div>
       </div>
     </div>

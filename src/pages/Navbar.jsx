@@ -1,26 +1,27 @@
-import { SiSwiggy } from 'react-icons/si';
-import { styles } from '../utils/styles';
-import { IoIosArrowDown } from 'react-icons/io';
-import { FiSearch } from 'react-icons/fi';
-import { FaRegUser } from 'react-icons/fa6';
-import { BsCart3 } from 'react-icons/bs';
-import { MdCallMade } from 'react-icons/md';
-import { RxCross2, RxHamburgerMenu } from 'react-icons/rx';
-import { useContext, useState } from 'react';
-import { Link, Outlet, useNavigate } from 'react-router-dom';
-import { CoOrdinate } from '../contexts/locationContext';
-import { GoLocation } from 'react-icons/go';
-import { useDispatch, useSelector } from 'react-redux';
-import { authToggleFn, locationToggleFn } from '../redux/toggleSlice';
-import { JETHA_WELCOME } from '../utils/constants';
-import { signInWithPopup, signOut } from 'firebase/auth';
-import { auth, provider } from '../config/firebaseAuth';
-import { addUserData, removeUserData } from '../redux/authSlice';
+import { SiSwiggy } from "react-icons/si";
+import { styles } from "../utils/styles";
+import { IoIosArrowDown } from "react-icons/io";
+import { FiSearch } from "react-icons/fi";
+import { FaRegUser } from "react-icons/fa6";
+import { BsCart3 } from "react-icons/bs";
+import { MdCallMade } from "react-icons/md";
+import { RxCross2, RxHamburgerMenu } from "react-icons/rx";
+import { useContext, useState } from "react";
+import { Link, Outlet, useNavigate } from "react-router-dom";
+import { CoOrdinate } from "../contexts/locationContext";
+import { GoLocation } from "react-icons/go";
+import { useDispatch, useSelector } from "react-redux";
+import { authToggleFn, locationToggleFn } from "../redux/toggleSlice";
+import { signInWithPopup, signOut } from "firebase/auth";
+import { auth, provider } from "../config/firebaseAuth";
+import { addUserData, removeUserData } from "../redux/authSlice";
+
+import Footer from "../components/Footer";
 
 const Navbar = () => {
   const [toggle, setToggle] = useState(false);
   const [cityData, setCityData] = useState([]);
-  const [add, setAdd] = useState('Bengaluru');
+  const [add, setAdd] = useState("Bengaluru");
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { setCoOrdinate } = useContext(CoOrdinate);
@@ -54,7 +55,7 @@ const Navbar = () => {
 
   const searchCity = async (city) => {
     const res = await fetch(
-      'https://www.swiggy.com/dapi/misc/place-autocomplete?input=' + city
+      import.meta.env.VITE_BASE_URL + "/misc/place-autocomplete?input=" + city
     );
     const data = await res.json();
     setCityData(data?.data);
@@ -62,7 +63,9 @@ const Navbar = () => {
 
   const fetchLatLng = async (placeId) => {
     const res = await fetch(
-      'https://www.swiggy.com/dapi/misc/address-recommend?place_id=' + placeId
+      import.meta.env.VITE_BASE_URL +
+        "/misc/address-recommend?place_id=" +
+        placeId
     );
     const data = await res.json();
     setCoOrdinate({
@@ -70,7 +73,7 @@ const Navbar = () => {
       lng: data?.data[0]?.geometry?.location?.lng,
     });
     setAdd(data?.data[0]?.formatted_address);
-    navigate('/');
+    navigate("/");
   };
 
   const handleVisibility = () => {
@@ -92,12 +95,12 @@ const Navbar = () => {
         <div
           onClick={handleVisibility}
           className={`absolute z-20 bg-[#08081a]/55 h-full w-full ${
-            visibility ? 'visible' : 'invisible'
+            visibility ? "visible" : "invisible"
           }`}
         ></div>
         <div
           className={`absolute duration-[550ms] bg-white h-full w-full sm:w-[70%] md:w-[70%] lg:w-[37%] z-30 ${
-            visibility ? 'left-0' : '-left-full'
+            visibility ? "left-0" : "-left-full"
           }`}
         >
           <div className='w-[80%] h-full ml-auto'>
@@ -130,7 +133,7 @@ const Navbar = () => {
                         </div>
                         <div
                           className={`flex flex-col ${
-                            !isLast && 'border-b border-[#BBBCC2] border-dashed'
+                            !isLast && "border-b border-[#BBBCC2] border-dashed"
                           } py-5 w-full`}
                         >
                           <span className='font-medium text-[#282c3f] text-base hover:text-orange-500'>
@@ -155,13 +158,13 @@ const Navbar = () => {
         <div
           onClick={handleAuth}
           className={`absolute z-20 bg-[#08081a]/55 h-full w-full ${
-            authVisibility ? 'visible' : 'invisible'
+            authVisibility ? "visible" : "invisible"
           }`}
         ></div>
 
         <div
           className={`fixed duration-[550ms] bg-white h-full w-full sm:w-[70%] md:w-[70%] lg:w-[37%] z-30 ${
-            authVisibility ? 'right-0' : '-right-full'
+            authVisibility ? "right-0" : "-right-full"
           }`}
         >
           <div className='w-[80%] h-full ml-8'>
@@ -172,16 +175,18 @@ const Navbar = () => {
               <div className='w-full sm:w-[80%]'>
                 <div className='flex items-center justify-between '>
                   <h1 className='text-[30px] font-medium tracking-wide border-black border-b-2 pb-2.5 max-w-fit'>
-                    {userData ? `Welcome` : 'Login'}
+                    {userData ? `Welcome` : "Login"}
                   </h1>
                   <div className='text-center'>
-                    <img
-                      src={userData ? userData?.photo : JETHA_WELCOME}
-                      className='h-[100px] w-[100px] rounded-full object-contain'
-                      alt='welcome'
-                    />
+                    {userData && (
+                      <img
+                        src={userData?.photo}
+                        className='h-[100px] w-[100px] rounded-full object-contain'
+                        alt='welcome'
+                      />
+                    )}
                     <span className='text-sm mt-1 font-semibold'>
-                      {userData?.name.split(' ')[0]}
+                      {userData?.name.split(" ")[0]}
                     </span>
                   </div>
                 </div>
@@ -191,7 +196,7 @@ const Navbar = () => {
                     onClick={userData ? handleLogout : asyncHandleAuth}
                     className='text-white shadow-md bg-[#ff5200] text-[14px] font-semibold h-[50px] w-full uppercase'
                   >
-                    {userData ? 'Logout' : 'Login with google'}
+                    {userData ? "Logout" : "Login with google"}
                   </button>
                 </div>
               </div>
@@ -202,14 +207,14 @@ const Navbar = () => {
 
       <div className='relative'>
         <nav
-          className={`w-full bg-white h-20 ${flexCenter} sticky h-20 inset-x-0 top-0 z-10 border-b border-gray-200 bg-white/75 backdrop-blur-lg transition-all`}
+          className={`w-full bg-white h-20 ${flexCenter} fixed h-20 inset-x-0 top-0 z-10 border-b border-gray-200 bg-white/75 backdrop-blur-lg transition-all`}
           style={{
-            boxShadow: '0 15px 40px -20px rgba(40, 44, 63, 0.15)',
+            boxShadow: "0 15px 40px -20px rgba(40, 44, 63, 0.15)",
           }}
         >
           <div className={`w-[90%] sm:w-[80%] ${flexBetween}`}>
             <div className='flex items-center gap-2 sm:gap-9'>
-              <Link to={'/'}>
+              <Link to={"/"}>
                 <SiSwiggy
                   size={49}
                   className='text-orange-500 hover:scale-110 cursor-pointer transition-transform duration-300 ease-in-out'
@@ -220,7 +225,7 @@ const Navbar = () => {
                 onClick={handleVisibility}
               >
                 <span className='font-bold text-xs border-b-2 pb-0.5 line-clamp-1 tracking-wide border-black hover:text-orange-500 hover:border-orange-500'>
-                  {add?.split(', ')[0]}{' '}
+                  {add?.split(", ")[0]}{" "}
                 </span>
                 <span className='font-light text-xs text-[#686b78] max-w-[100px] line-clamp-1'>
                   {add?.slice(0, 50)}
@@ -232,12 +237,7 @@ const Navbar = () => {
             <div className={`hidden md:flex md:${flexCenter} gap-12`}>
               <div className={`${flexCenter} gap-2 ${navLink}`}>
                 <FiSearch size={20} />
-                <Link to={'/search'}>Search</Link>
-              </div>
-
-              <div className={`${flexCenter} gap-2 ${navLink}`}>
-                <MdCallMade size={17} />
-                <span>Contact</span>
+                <Link to={"/search"}>Search</Link>
               </div>
 
               <div
@@ -251,7 +251,7 @@ const Navbar = () => {
                       className='h-[25x] w-[25px] rounded-full object-contain'
                       alt='welcome'
                     />
-                    {userData?.name.split(' ')[0]}
+                    {userData?.name.split(" ")[0]}
                   </>
                 ) : (
                   <>
@@ -263,7 +263,7 @@ const Navbar = () => {
 
               <div className={`${flexCenter} gap-2 ${navLink}`}>
                 <BsCart3 size={17} />
-                <Link to={'/cart'}>Cart {cartItems?.length}</Link>
+                <Link to={"/cart"}>Cart {cartItems?.length}</Link>
               </div>
             </div>
 
@@ -280,14 +280,9 @@ const Navbar = () => {
                 className={`${flexCenter} gap-2 ${responsiveNavLink} py-4 px-10`}
               >
                 <FiSearch size={20} />
-                <Link to={'/search'}>Search</Link>
+                <Link to={"/search"}>Search</Link>
               </div>
-              <div
-                className={`${flexCenter} gap-2 ${responsiveNavLink} py-4 px-10`}
-              >
-                <MdCallMade size={17} />
-                <span>Contact</span>
-              </div>
+
               <div
                 onClick={handleAuth}
                 className={`${flexCenter} gap-2 ${responsiveNavLink} py-4 px-10`}
@@ -299,7 +294,7 @@ const Navbar = () => {
                       className='h-[30x] w-[30px] rounded-full object-contain'
                       alt='welcome'
                     />
-                    {userData?.name.split(' ')[0]}
+                    {userData?.name.split(" ")[0]}
                   </>
                 ) : (
                   <>
@@ -312,13 +307,17 @@ const Navbar = () => {
                 className={`${flexCenter} gap-2 ${responsiveNavLink} py-4 px-10`}
               >
                 <BsCart3 size={17} />
-                <Link to={'/cart'}>Cart {cartItems?.length}</Link>
+                <Link to={"/cart"}>Cart {cartItems?.length}</Link>
               </div>
             </div>
           )}
         </nav>
 
-        <Outlet />
+        <div className='pt-20 min-h-[95vh]'>
+          <Outlet />
+        </div>
+
+        <Footer />
       </div>
     </>
   );

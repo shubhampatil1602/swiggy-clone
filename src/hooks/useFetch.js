@@ -1,5 +1,5 @@
-import { useContext, useEffect, useState } from 'react';
-import { CoOrdinate } from '../contexts/locationContext';
+import { useContext, useEffect, useState } from "react";
+import { CoOrdinate } from "../contexts/locationContext";
 
 const useFetch = () => {
   const [data, setData] = useState(null);
@@ -10,7 +10,9 @@ const useFetch = () => {
     coOrdinate: { lat, lng },
   } = useContext(CoOrdinate);
 
-  const MAIN_SWIGGY_URL = `https://www.swiggy.com/dapi/restaurants/list/v5?lat=${lat}&lng=${lng}&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING`;
+  const MAIN_SWIGGY_URL = `${
+    import.meta.env.VITE_BASE_URL
+  }/restaurants/list/v5?lat=${lat}&lng=${lng}&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING`;
 
   const fetchData = async () => {
     const res = await fetch(MAIN_SWIGGY_URL);
@@ -49,15 +51,15 @@ export default useFetch;
 
 export const filterOptions = [
   {
-    title: 'Offers',
+    title: "Offers",
   },
   {
-    title: 'Rs. 300-Rs. 600',
+    title: "Rs. 300-Rs. 600",
   },
   {
-    title: 'Less than Rs. 300',
+    title: "Less than Rs. 300",
   },
   {
-    title: 'Ratings 4.0+',
+    title: "Ratings 4.0+",
   },
 ];

@@ -1,6 +1,6 @@
-import { Link } from 'react-router-dom';
-import { NO_IMG_AVAILABLE, TOP_RES_CHAIN_IMGs } from '../utils/constants';
-import { MdStars } from 'react-icons/md';
+import { Link } from "react-router-dom";
+import { NO_IMG_AVAILABLE, TOP_RES_CHAIN_IMGs } from "../utils/constants";
+import { MdStars } from "react-icons/md";
 
 const Card = (topRestaurantChain) => {
   const {
@@ -13,10 +13,8 @@ const Card = (topRestaurantChain) => {
     sla: { slaString },
   } = topRestaurantChain?.info;
 
-  // console.log(topRestaurantChain);
-  //4
   return (
-    <Link to={`/restaurant/${topRestaurantChain?.cta?.link?.split('/')[5]}`}>
+    <Link to={`/restaurant/${topRestaurantChain?.cta?.link?.split("/")[5]}`}>
       <div className='min-w-[244px]'>
         <img
           src={
@@ -36,9 +34,9 @@ const Card = (topRestaurantChain) => {
       >
         <div className='bg-gradient-to-t from-black via-transparent to-transparent h-[180px] px-2 py-1 rounded-b-2xl flex items-end'>
           <h1 className='font-extrabold text-xl px-2 py-1 text-white'>
-            {topRestaurantChain?.info?.aggregatedDiscountInfoV3?.header || ''}{' '}
+            {topRestaurantChain?.info?.aggregatedDiscountInfoV3?.header || ""}{" "}
             {topRestaurantChain?.info?.aggregatedDiscountInfoV3?.subHeader ||
-              ''}
+              ""}
           </h1>
         </div>
       </div>
@@ -51,7 +49,7 @@ const Card = (topRestaurantChain) => {
           </h3>
         </div>
         <p className='text-gray-500 font-light text-base leading-snug line-clamp-1'>
-          {cuisines.join(', ')}
+          {cuisines.join(", ")}
         </p>
         <p className='text-gray-500 font-light text-base leading-snug'>
           {areaName}

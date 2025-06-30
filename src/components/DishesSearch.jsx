@@ -1,21 +1,21 @@
-import { IoStar } from 'react-icons/io5';
-import { GoArrowRight } from 'react-icons/go';
-import { MdOutlineKeyboardArrowRight } from 'react-icons/md';
-import { CLOUDINARY_CDN_URL, NO_IMG_AVAILABLE } from '../utils/constants';
-import AddToCartButton from './AddToCartButton';
-import { useContext, useState } from 'react';
-import ResDetailModal from './ResDetailModal';
-import { PiSquareLogoFill } from 'react-icons/pi';
-import { CoOrdinate } from '../contexts/locationContext';
+import { IoStar } from "react-icons/io5";
+import { GoArrowRight } from "react-icons/go";
+import { MdOutlineKeyboardArrowRight } from "react-icons/md";
+import { CLOUDINARY_CDN_URL, NO_IMG_AVAILABLE } from "../utils/constants";
+import AddToCartButton from "./AddToCartButton";
+import { useContext, useState } from "react";
+import ResDetailModal from "./ResDetailModal";
+import { PiSquareLogoFill } from "react-icons/pi";
+import { CoOrdinate } from "../contexts/locationContext";
 
 const DishesSearch = ({ dish }) => {
   const [showDetailsModal, setShowDetailsModal] = useState(false);
   const {
     coOrdinate: { lat, lng },
   } = useContext(CoOrdinate);
-  const MORE_DISHES_FROM_SAME_RES = `https://www.swiggy.com/dapi/restaurants/search/v3?lat=${lat}&lng=${lng}&str=Burger&trackingId=undefined&submitAction=SUGGESTION&selectedPLTab=dish-add&restaurantMenuUrl=%2Fcity%2Fbangalore%2Fleons-burgers-and-wings-leon-grill-frazer-town-rest464509%3Fquery%3DBurger&restaurantIdOfAddedItem=464509&itemAdded=81870587&metaData=%7B%22type%22%3A%22DISH%22%2C%22data%22%3A%7B%22vegIdentifier%22%3A%22VEG%22%2C%22cloudinaryId%22%3A%22athbxylw1pvnebsbosky%22%2C%22dishFamilyId%22%3A%22846649%22%2C%22dishFamilyIds%22%3A%5B%22846649%22%5D%7D%2C%22businessCategory%22%3A%22SWIGGY_FOOD%22%2C%22displayLabel%22%3A%22Dish%22%7D`;
+
   return (
-    <div className='bg-white w-[410px] rounded-3xl px-3 pt-6 pb-8'>
+    <div className='bg-white w-[410px] border rounded-3xl px-3 pt-6 pb-8'>
       <div className='text-[#686b78] mx-2 border-[#bebfc5] border-b border-dotted mb-4 pb-4 flex items-center justify-between'>
         <div>
           <h2 className='text-[13px] font-semibold'>
@@ -23,11 +23,10 @@ const DishesSearch = ({ dish }) => {
           </h2>
           <p className='flex items-center gap-1 text-[12.02px] font-light'>
             <IoStar />
-            {dish?.card?.card?.restaurant?.info?.avgRating} ·{' '}
+            {dish?.card?.card?.restaurant?.info?.avgRating} ·{" "}
             {dish?.card?.card?.restaurant?.info?.sla?.slaString}
           </p>
         </div>
-        <GoArrowRight size={25} />
       </div>
       <div className=' flex justify-between'>
         <div className='max-w-[56%] pl-2'>
@@ -87,12 +86,11 @@ const DishesSearch = ({ dish }) => {
             alt='dish'
             className='h-[130px] w-[154px] object-cover shadow rounded-2xl'
           />
-          {/* <div onClick={() => {}}> */}
+
           <AddToCartButton
             info={dish?.card?.card?.info}
             length={dish?.card?.card?.info?.addons?.length}
           />
-          {/* </div> */}
         </div>
       </div>
     </div>

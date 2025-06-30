@@ -1,16 +1,19 @@
-import { useEffect, useState } from 'react';
-import Card from '../components/Card';
-import useFetch, { filterOptions } from '../hooks/useFetch';
-import { styles } from '../utils/styles';
-import { X } from 'lucide-react';
-import { useDispatch, useSelector } from 'react-redux';
-import { setFilterValue } from '../redux/filterSlice';
+import { useEffect, useState } from "react";
+import Card from "../components/Card";
+import useFetch, { filterOptions } from "../hooks/useFetch";
+import { styles } from "../utils/styles";
+import { X } from "lucide-react";
+import { useDispatch, useSelector } from "react-redux";
+import { setFilterValue } from "../redux/filterSlice";
+import { ShimmerCard } from "../components/Shimmer/Card";
+import { ShimmerHeading } from "../components/Shimmer/Heading";
 
 const ResWithOnlineFood = () => {
   const [activeFilterBtn, setActiveFilterBtn] = useState(null);
 
   const dispatch = useDispatch();
   const { data, resWithOnlineFoods } = useFetch();
+  const title = data?.cards[2]?.card?.card?.title;
   const filterValue = useSelector((state) => state.filterSlice.filterValue);
 
   function filterResWithOnlineFoods() {
@@ -18,25 +21,25 @@ const ResWithOnlineFood = () => {
       if (filterValue == null) return resWithOnlineFood;
 
       switch (filterValue) {
-        case 'Offers':
+        case "Offers":
           return (
             resWithOnlineFood?.info?.aggregatedDiscountInfoV3?.header ||
             resWithOnlineFood?.info?.aggregatedDiscountInfoV3?.subHeader ||
             resWithOnlineFood?.info?.aggregatedDiscountInfoV3?.discountTag
           );
 
-        case 'Rs. 300-Rs. 600':
+        case "Rs. 300-Rs. 600":
           return (
-            resWithOnlineFood?.info?.costForTwo.slice(1).split(' ')[0] > 300 &&
-            resWithOnlineFood?.info?.costForTwo.slice(1).split(' ')[0] < 600
+            resWithOnlineFood?.info?.costForTwo.slice(1).split(" ")[0] > 300 &&
+            resWithOnlineFood?.info?.costForTwo.slice(1).split(" ")[0] < 600
           );
 
-        case 'Less than Rs. 300':
+        case "Less than Rs. 300":
           return (
-            resWithOnlineFood?.info?.costForTwo.slice(1).split(' ')[0] < 300
+            resWithOnlineFood?.info?.costForTwo.slice(1).split(" ")[0] < 300
           );
 
-        case 'Ratings 4.0+':
+        case "Ratings 4.0+":
           return (
             resWithOnlineFood?.info?.rating > 4.0 ||
             resWithOnlineFood?.info?.avgRatingString > 4.0
@@ -57,7 +60,7 @@ const ResWithOnlineFood = () => {
     <>
       <div className={`flex`}>
         <h1 className={`py-[18px] pl-4 font-bold text-2xl`}>
-          {data?.cards[2]?.card?.card?.title}
+          {title ? title : <ShimmerHeading />}
         </h1>
       </div>
       <div className='flex flex-wrap gap-3 pl-4 mt-2 mb-6 w-full'>
@@ -66,8 +69,8 @@ const ResWithOnlineFood = () => {
             key={btn.title}
             className={`${styles.filterBtn} ${
               activeFilterBtn === btn.title
-                ? 'border-black bg-[#f0f0f5]'
-                : 'bg-white'
+                ? "border-black bg-[#f0f0f5]"
+                : "bg-white"
             }`}
             onClick={() => handleFilter(btn.title)}
           >
@@ -83,23 +86,24 @@ const ResWithOnlineFood = () => {
         }}
         className='flex flex-wrap gap-6 duration-500 px-4 pb-4'
       >
-        {filterValue
-          ? filterResWithOnlineFoods()?.map((resWithOnlineFood) => (
+        {resWithOnlineFoods && resWithOnlineFoods.length > 0 ? (
+          (filterValue ? filterResWithOnlineFoods() : resWithOnlineFoods).map(
+            (resWithOnlineFood) => (
               <div
                 key={resWithOnlineFood?.info?.id}
                 className='cursor-pointer w-[244px] relative flex-shrink-0 flex-1 sm:flex-grow-0 hover:scale-95 transition-transform duration-300 ease-in-out'
               >
                 <Card {...resWithOnlineFood} />
               </div>
-            ))
-          : resWithOnlineFoods?.map((resWithOnlineFood) => (
-              <div
-                key={resWithOnlineFood?.info?.id}
-                className='cursor-pointer w-[244px] relative flex-shrink-0 flex-1 sm:flex-grow-0 hover:scale-95 transition-transform duration-300 ease-in-out'
-              >
-                <Card {...resWithOnlineFood} />
-              </div>
+            )
+          )
+        ) : (
+          <div className='flex gap-8'>
+            {[1, 2, 3, 4].map((c, idx) => (
+              <ShimmerCard key={idx} />
             ))}
+          </div>
+        )}
       </div>
     </>
   );
